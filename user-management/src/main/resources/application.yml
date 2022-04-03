@@ -1,0 +1,38 @@
+
+server:
+    port: 1100
+
+spring:
+    application:
+        name: user-management
+    datasource:
+        url: jdbc:postgresql://localhost:5432/postgres
+        username: postgres
+        password: password
+    jpa:
+        database: POSTGRESQL
+        hibernate::
+            ddl-auto: none
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.PostgreSQLDialect
+                jdbc:
+                    time_zone: UTC
+        show-sql: false
+
+springdoc.swagger-ui.path: /${spring.application.name}/swagger-ui.html
+
+management.endpoints.web.exposure.include: logfile,health,info
+
+jwt.secret: secret
+jwt.token.validity: 1
+
+logging:
+    level:
+        root: WARN
+        org.springframework: INFO
+        org.hibernate.SQL: DEBUG
+        org.hibernate.type: DEBUG
+        com.example.user: INFO
+    file:
+        name: logs/${spring.application.name}.log

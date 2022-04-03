@@ -1,0 +1,25 @@
+
+server:
+  port: ${PORT:9191}
+
+# give the application a name
+spring:
+  application:
+    name: api-gateway-service
+    
+eureka:
+    client:
+        serviceUrl:
+            defaultZone: http://localhost:8761/eureka/
+#            defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+    
+# custom logging settings
+logging:
+  level:
+      root: WARN
+      org.springframework: INFO
+      org.springframework.cloud.gateway: DEBUG
+      reactor.netty.http.client: DEBUG
+      com.example.gateway: INFO
+  file:
+      name: logs/${spring.application.name}.log 
