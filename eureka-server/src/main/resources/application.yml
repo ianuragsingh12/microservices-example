@@ -1,0 +1,27 @@
+
+server:
+  port: ${PORT:8761} #Indicate the default PORT where this service will be started
+
+# application name
+spring:
+  application:
+    name: eureka-service
+    
+eureka:
+    client:
+        registerWithEureka: false   #telling the server not to register himself in the service registry
+        fetchRegistry: false
+#        serviceUrl:
+#            defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka
+    instance:
+        prefer-ip-address: true
+#        hostname: localhost            
+    
+# custom logging settings
+logging:
+  level:
+      root: WARN
+      org.springframework: INFO
+      com.example.eureka: INFO
+  file:
+      name: logs/${spring.application.name}.log 

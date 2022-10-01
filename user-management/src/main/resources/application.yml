@@ -1,0 +1,52 @@
+
+server:
+    port: 1100
+
+spring:
+    application:
+        name: user-management
+    datasource:
+        url: jdbc:postgresql://localhost:5432/postgres
+        username: root
+        password: root
+    jpa:
+        database: POSTGRESQL
+        hibernate::
+            ddl-auto: none
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.PostgreSQLDialect
+                jdbc:
+                    time_zone: UTC
+        show-sql: false
+
+
+## SPRING-DOCS SWAGGER V3
+springdoc.swagger-ui.path: /${spring.application.name}/swagger-ui.html
+
+## ACTUATORS
+management.endpoints.web.exposure.include: logfile,health,info
+
+## EUREKA
+eureka:
+    client:
+        serviceUrl:
+            defaultZone: http://localhost:8761/eureka/
+    instance: # instance id for eureka server
+        instanceId: ${spring.cloud.client.hostname}:${server.port}/${spring.application.name}:${instanceId:${random.value}}
+
+
+## JWT
+jwt.secret: secret
+jwt.token.validity: 1
+
+## LOGGING
+logging:
+    level:
+        root: WARN
+        org.springframework: INFO
+        org.hibernate.SQL: DEBUG
+        org.hibernate.type: DEBUG
+        com.example.user: INFO
+    file:
+        name: logs/${spring.application.name}.log

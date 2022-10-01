@@ -1,0 +1,9 @@
+eureka-server - 8761
+config-server - 8888
+api-gateway - 9191
+user-management - 1100
+order-service - 2100
+payment-service - 3100
+book-service - 4100
+student-service - 5100
+product-service - 6100

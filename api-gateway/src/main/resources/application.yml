@@ -1,0 +1,29 @@
+
+server:
+  port: ${PORT:9191}
+
+spring:
+  application:
+    name: api-gateway
+
+#spring.cloud.gateway.discovery.locator.enabled: true
+#spring.cloud.gateway.discovery.locator.lower-case-service-id: true
+    
+## EUREKA
+eureka:
+    client:
+        serviceUrl:
+            defaultZone: http://localhost:8761/eureka/
+    instance:
+        instanceId: ${spring.cloud.client.hostname}:${server.port}/${spring.application.name}    
+
+## LOGGING
+logging:
+  level:
+      root: WARN
+      org.springframework: INFO
+      org.springframework.cloud.gateway: DEBUG
+      reactor.netty.http.client: DEBUG
+      com.example.gateway: INFO
+  file:
+      name: logs/${spring.application.name}.log 
